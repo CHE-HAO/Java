@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+@SuppressWarnings("unused")
 public class WorkDays {
 	/*
 	 * refTaskId
@@ -31,12 +32,12 @@ public class WorkDays {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
 	public static void main(String[] args) {
-		ArrayList<String> workDates = getWorkDates();
+		ArrayList<String> workDates = getWorkDatesByMonth();
 		String javascript = getJavascript(workDates);
 		System.out.println(javascript);
 	}
 	
-	private static ArrayList<String> getWorkDates(){
+	private static ArrayList<String> getWorkDatesByMonth(){
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MONTH, 1);
 		c.set(Calendar.DATE, 0);
@@ -47,6 +48,19 @@ public class WorkDays {
 			if (c.get(Calendar.DAY_OF_WEEK) != 1 && c.get(Calendar.DAY_OF_WEEK) != 7) {
 				workDates.add(sdf.format(c.getTime()));
 			}
+		}
+		return workDates;
+	}
+	
+	private static String[] getWorkDatesByWeek(){
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, 2);
+		String[] workDates = new String[5];
+		String day;
+		for(int i = 0 ; i < 5 ; i++){
+			day = sdf.format(c.getTime());
+			workDates[i] = day;
+			c.add(Calendar.DATE, 1);
 		}
 		return workDates;
 	}
