@@ -41,7 +41,7 @@ public class WorkDays {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MONTH, 1);
 		c.set(Calendar.DATE, 0);
-		int endDate = c.get(Calendar.DATE);
+		int endDate = c.get(Calendar.DATE)+1;
 		ArrayList<String> workDates = new ArrayList<String>();
 		for (int i = 1 ; i < endDate ; i++) {
 			c.set(Calendar.DATE, i);
