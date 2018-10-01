@@ -1,5 +1,6 @@
 package units;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,16 +21,18 @@ public class WorkDays {
 	 */
 	private static String 
 		pjCustCode = "CLI",
-		refPjCode = "CLI_CHATBOT_20171101_P1",
+		refPjCode = "CLI_CHATBOT_20171101_P1",	// 專案代號
 		refTaskId = "4",
 		workhours = "8",
-		whId = "0",
+		workStartTime = "09:00",
+		workEndTime = "18:00",
+		whId = "",
 		refCopCode = "TPI",
-		empName = "林哲豪",
-		empCode = "2015168",
-		pjDepName = "";
+		empName = "林哲豪",		// 員工姓名
+		empCode = "2015168",	// 員工編號
+		pjDepName = "";			// 部門名稱
 	
-	private static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	
 	public static void main(String[] args) {
 		ArrayList<String> workDates = getWorkDatesByMonth();
@@ -78,13 +81,15 @@ public class WorkDays {
 		sb.append("];  ");
 		sb.append("for (var i = 0 ; i < workDates.length ; i++) { ");
 		sb.append(	"$.ajax({ ");
-		sb.append(		"url: '/tperp/workHour/work/addWorkSubmit', ");
+		sb.append(		"url: '/erp/workHour/work/addWorkSubmit', ");
 		sb.append(		"data: { ");
 		sb.append(			"workDate : workDates[i], ");
 		sb.append(			"pjCustCode : '"+pjCustCode+"', ");
 		sb.append(			"refPjCode : '"+refPjCode+"', ");
 		sb.append(			"refTaskId : '"+refTaskId+"', ");
 		sb.append(			"workhours : '"+workhours+"', ");
+		sb.append(			"workStartTime : '"+workStartTime+"', ");
+		sb.append(			"workEndTime : '"+workEndTime+"', ");
 		sb.append(			"whId : '"+whId+"', ");
 		sb.append(			"refCopCode : '"+refCopCode+"', ");
 		sb.append(			"empName : '"+empName+"', ");
